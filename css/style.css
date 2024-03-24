@@ -1,0 +1,239 @@
+@keyframes logoGrow {
+    from {
+        width: 25px;
+        opacity: 0;
+    }
+
+    to {
+        width: 475px;
+        opacity: 1;
+    }
+}
+
+#logo {
+    animation: logoGrow 5s ease-in-out forwards;
+}
+
+body {
+    font-family: 'Poppins', serif;
+    background-image: url('images/concrete_seamless.png');
+    /* Update the path if the image is located elsewhere */
+    background-color: #f1f1f1;
+    /* Fallback color if the image is not found */
+    background-repeat: repeat;
+    /* This will tile the image across the background */
+    margin: 0;
+    /* It's a good practice to reset default margin */
+    padding: 0;
+    /* Reset default padding */
+}
+
+header {
+    display: flex;
+    /* Use flexbox for layout */
+    justify-content: space-between;
+    /* Space between logo and nav */
+    align-items: center;
+    /* Align items vertically */
+    flex-direction: column;
+}
+
+.nav_links {
+    display: flex;
+    /* Display list items inline */
+    list-style: none;
+    /* Remove bullet points */
+    padding: 0;
+    /* Remove default padding */
+    margin: 0;
+    /* Remove default margin */
+    flex-direction: column;
+}
+
+.nav_links li {
+    padding: 0 15px;
+    /* Spacing between nav items */
+}
+
+.nav_links a {
+    color: blue;
+    /* Replace with the actual text color needed */
+}
+
+.nav_links a:visited {
+    color: blue;
+    /* Ensures visited links don't change color */
+}
+
+.card>header {
+    background: #288088;
+    border: 2px solid #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 50px 50px 0 0;
+    /* This applies the border-radius to the top corners */
+}
+
+/* .card > header > :first-child {
+    border-radius: 50px 50px 0 0;
+    background-color: transparent;
+  } */
+
+.card>header+ul {
+    background: white;
+    /* Ensure it doesn't cover the header's rounded corners */
+    padding: 0 20px;
+    /* Match the horizontal padding of the header, if necessary */
+}
+
+.card {
+    flex: 0 1 450px;
+    background-color: white;
+    margin: 10px;
+    /* Add margin for spacing around cards */
+    display: flex;
+    flex-direction: column;
+    /* Stack children vertically */
+    justify-content: space-between;
+    /* Distribute space between items */
+}
+
+.pricing {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows cards to wrap to next line on smaller screens */
+    justify-content: center;
+    /* Centers cards horizontally */
+    align-items: center;
+    /* Centers cards vertically */
+    gap: 20px;
+    /* Adds space between cards */
+}
+
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+    /* This sets the width of the image */
+    height: 230px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow multiple rows */
+    justify-content: center;
+    /* Center images horizontally */
+    align-items: center;
+    /* Center images vertically */
+}
+
+@media (min-width: 900px) {
+    header {
+        flex-direction: row;
+        /* Align items in a row for wider screens */
+    }
+
+    .nav_links {
+        flex-direction: row;
+        /* Align navigation items in a row */
+    }
+
+    /* Styling for the pricing and card classes */
+    .card {
+        flex-basis: 275px;
+        /* Set the width of the cards to 275px */
+        /* Keep other necessary styles */
+    }
+
+    /* Make the first header sticky */
+    /* Assuming the main header is directly within the body and is the first element */
+    body>header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        /* High enough to ensure it's above other content */
+        width: 100%;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none;
+    }
+}
+
+
+@media print {
+
+    /* General print styles */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: none;
+        color: black;
+    }
+
+    /* Hide elements not needed for print */
+    .gallery,
+    footer,
+    h2#gallery {
+        display: none;
+    }
+
+    /* Center logo and nav links */
+    header {
+        width: 100%;
+        /* text-align: center; */
+    }
+
+    #logo {
+        /* Center the logo */
+        width:100%;
+        /* display: block; */
+        /* Make logo a block to allow margin auto to center it */
+    }
+
+    .nav_links {
+        display: block;
+        text-align: center;
+        margin: 0;
+        /* padding: 20px; */
+    }
+
+    .nav_links li {
+        display: inline;
+        /* Display nav items in a line */
+        /* padding-right: 30px; */
+        /* Spacing between nav items */
+    }
+
+  /* Adjust card styles */
+  .pricing {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end; /* Align cards to the bottom */
+  }
+
+  .card {
+    border: 2px solid #45ADDD;
+    box-sizing: border-box;
+    flex-basis: 325px; /* On print, make cards full width */
+    flex-basis: calc(100% / 3 - 40px); 
+    width: calc(100% / 3 - 40px); /* This will also influence the width */
+    page-break-inside: avoid; /* Avoid page breaks within cards */
+  }
+
+    /* Footer needs to be displayed */
+    footer {
+        display: block;
+    }
+
+    /* Position the thumbs up emoji after the list item */
+    .card ul li:nth-of-type(2)::after {
+        content: " \1F44D";
+        /* Thumbs-up emoji */
+        font-size: 18px;
+        /* Adjust size as needed */
+    }
+}
